@@ -39,9 +39,9 @@ class WelcomePreferencesDataSourceImpl @Inject constructor(
      */
     override suspend fun getInitialDialogVisibility(): WelcomePreferences =
     // Obtain a single element from the provided Flow,
-    // transform it from Preferences to Welcomepreferences,
+    // transform it from Preferences to WelcomePreferences,
         // and cancel the Flow
-        mapToWelcomePreferences(dataStore.data.first().toPreferences())
+        mapToWelcomePreferences(dataStore.data.first())
 
     /**
      * Returns a Flow for the user's preference about the visibility of the initial welcome dialog.
