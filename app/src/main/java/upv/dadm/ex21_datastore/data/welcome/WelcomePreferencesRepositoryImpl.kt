@@ -7,8 +7,6 @@
 
 package upv.dadm.ex21_datastore.data.welcome
 
-import kotlinx.coroutines.flow.Flow
-import upv.dadm.ex21_datastore.data.model.WelcomePreferences
 import javax.inject.Inject
 
 /**
@@ -23,13 +21,13 @@ class WelcomePreferencesRepositoryImpl @Inject constructor(
     /**
      * Returns the user's preference about the visibility of the initial welcome dialog.
      */
-    override suspend fun getInitialDialogVisibility(): WelcomePreferences =
+    override suspend fun getInitialDialogVisibility() =
         welcomePreferencesDataSource.getInitialDialogVisibility()
 
     /**
      * Returns a Flow for the user's preference about the visibility of the initial welcome dialog.
      */
-    override fun getDialogVisibility(): Flow<WelcomePreferences> =
+    override fun getDialogVisibility() =
         welcomePreferencesDataSource.getDialogVisibility()
 
     /**

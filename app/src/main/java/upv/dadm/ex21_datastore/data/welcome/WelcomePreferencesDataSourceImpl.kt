@@ -12,7 +12,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -37,7 +36,7 @@ class WelcomePreferencesDataSourceImpl @Inject constructor(
     /**
      * Returns the user's preference about the visibility of the initial welcome dialog.
      */
-    override suspend fun getInitialDialogVisibility(): WelcomePreferences =
+    override suspend fun getInitialDialogVisibility() =
     // Obtain a single element from the provided Flow,
     // transform it from Preferences to WelcomePreferences,
         // and cancel the Flow
@@ -46,7 +45,7 @@ class WelcomePreferencesDataSourceImpl @Inject constructor(
     /**
      * Returns a Flow for the user's preference about the visibility of the initial welcome dialog.
      */
-    override fun getDialogVisibility(): Flow<WelcomePreferences> =
+    override fun getDialogVisibility() =
         dataStore.data.catch { exception ->
             // Return empty Preferences if there is an error when reading data
             if (exception is IOException) {
@@ -69,7 +68,7 @@ class WelcomePreferencesDataSourceImpl @Inject constructor(
     /**
      * Maps the provided Preferences into a WelcomePreferences.
      */
-    private fun mapToWelcomePreferences(preferences: Preferences): WelcomePreferences =
+    private fun mapToWelcomePreferences(preferences: Preferences) =
         WelcomePreferences(preferences[PreferenceKeys.DIALOG_VISIBILITY] ?: true)
 
 }
